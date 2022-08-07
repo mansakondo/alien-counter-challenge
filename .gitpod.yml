@@ -3,11 +3,22 @@ image:
 ports:
   - port: 3000
     onOpen: open-preview
+  - port: 5000
+    onOpen: open-preview
+  - port: 5001
+    onOpen: open-preview
   - port: 6379
     onOpen: ignore
 tasks:
   - name: "Redis server"
+    init: gp sync-done redis-server
     command: redis-server
-  - name: "Rails server"
-    init: yarn install && yarn build && bin/setup && bundle exec rake assets:precompile
+  - name: "Earth Rails server"
+    init: yarn install && yarn build && bin/setup && bundle exec rake assets:precompile && gp sync-done rails-server
     command: bin/rails server -b 0.0.0.0
+  - name: "Pluto Rails server"
+    init: gp sync-await rails-server && yarn install && yarn build && bin/setup && bundle exec rake assets:precompile
+    command: PLANET=Pluto bin/rails server -b 0.0.0.0 -p 5000 -P tmp/pids/server2.pid
+  - name: "Jupiter Rails server"
+    init: gp sync-await rails-server && yarn install && yarn build && bin/setup && bundle exec rake assets:precompile
+    command: PLANET=Jupiter bin/rails server -b 0.0.0.0 -p 5001 -P tmp/pids/server3.pid
