@@ -1,6 +1,6 @@
 class CounterController < ApplicationController
   def show
-    @count = session[:count].to_i
+    @count = Kredis.counter("counter:count").value
     @users_count = 0
     @planets     = [
       { name: "Earth", code: "earth", counter_count: 0, users_count: 0 },

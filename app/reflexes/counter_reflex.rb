@@ -2,10 +2,14 @@
 
 class CounterReflex < ApplicationReflex
   def increment(step = 1)
-    session[:count] = session[:count].to_i + step
+    counter.increment by: step
   end
 
   def decrement(step = 1)
-    session[:count] = session[:count].to_i - step
+    counter.decrement by: step
+  end
+
+  def counter
+    Kredis.counter "counter:count"
   end
 end
