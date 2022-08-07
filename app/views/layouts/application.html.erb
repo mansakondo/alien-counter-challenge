@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AlienCounterChallenge</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body class="p-4 text-zinc-900">
+    <div class="mb-6">
+      <span>Connected to <%= ENV["PLANET"] || "Earth" %></span>
+    </div>
+
+    <div class="flex flex-col items-center mx-auto my-0 md:w-1/2">
+      <%= yield %>
+    </div>
+</html>

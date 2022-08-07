@@ -1,0 +1,21 @@
+<tr>
+  <td class="px-6 py-4 truncate max-w-[300px]">
+    <%= planet[:name] %>
+  </td>
+
+  <td class="px-6 py-4 text-right">
+    <span id=<%= "#{planet[:code]}-users-count" %>>
+      <%= planet[:users_count] %>
+    </span>
+    <span>/</span>
+    <span class="users-count"><%= @users_count %></span>
+  </td>
+
+  <td class="px-6 py-4 text-right">
+    <span id=<%= "#{planet[:code]}-counter-count" %>>
+      <%= planet[:counter_count] %>
+    </span>
+    <span>/</span>
+    <span class="counter-count"><%= @count %></span>
+  </td>
+</tr>

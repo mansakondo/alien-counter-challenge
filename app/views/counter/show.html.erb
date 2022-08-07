@@ -1,0 +1,14 @@
+<div data-controller="counter" class="flex flex-col items-center mb-4 text-lg gap-2">
+  <div>
+    <span class="counter-count">
+      <%= @count %>
+    </span>
+  </div>
+
+  <div class="flex gap-2">
+    <%= link_to "+", nil, data: { action: "click->counter#increment" }, class: "px-8 py-4 text-white bg-black rounded" %>
+    <%= link_to "-", nil, data: { action: "click->counter#decrement" }, class: "px-8 py-4 text-white bg-black rounded" %>
+  </div>
+</div>
+
+<%= render partial: "counter/planets" %>
